@@ -83,8 +83,9 @@ The project was developed following the **Test Driven Development (TDD)** workfl
 ---
 # 📸 Sign Up Page
 
-![Sign Up Page](screenshots/Sign-up.png)
+![Sign Up Page](screenshots/Sign-Up.png)
 
+---
 # 📸 Login Page
 
 ![Login Page](screenshots/Sign-in.png)
