@@ -74,5 +74,31 @@ describe("POST /api/auth/register", () => {
   expect(response.body.message).toBe("Email already exists");
 
     });
+    test("should login a registered user", async () => {
+
+  const userData = {
+    name: "Narendra Modi",
+    email: "modi@example.com",
+    password: "password123",
+  };
+
+  // Register user
+  await request(app)
+    .post("/api/auth/register")
+    .send(userData);
+
+  // Login
+  const response = await request(app)
+    .post("/api/auth/login")
+    .send({
+      email: userData.email,
+      password: userData.password,
+    });
+
+  expect(response.statusCode).toBe(200);
+  expect(response.body.success).toBe(true);
+  expect(response.body.token).toBeDefined();
+
+    });
 
 });
