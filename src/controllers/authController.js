@@ -2,7 +2,6 @@ const authService = require("../services/authService");
 
 const register = async (req, res) => {
     try {
-
         const user = await authService.register(req.body);
 
         return res.status(201).json({
@@ -11,7 +10,13 @@ const register = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Registration Error:", error);
+
+        if (error.message === "Email already exists") {
+            return res.status(409).json({
+                success: false,
+                message: error.message,
+            });
+        }
 
         return res.status(500).json({
             success: false,
@@ -21,19 +26,10 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    try {
-        return res.status(501).json({
-            success: false,
-            message: "Login not implemented yet",
-        });
-    } catch (error) {
-        console.error("❌ Login Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
+    return res.status(501).json({
+        success: false,
+        message: "Login not implemented yet",
+    });
 };
 
 module.exports = {
