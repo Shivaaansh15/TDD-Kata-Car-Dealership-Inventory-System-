@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const carSchema = new mongoose.Schema(
   {
-    make: {
+    brand: {
       type: String,
       required: true,
       trim: true,
@@ -22,12 +22,14 @@ const carSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
+      min: 0,
     },
 
-    stock: {
+    quantity: {
       type: Number,
       required: true,
       default: 0,
+      min: 0,
     },
   },
   {
