@@ -26,10 +26,22 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    return res.status(501).json({
-        success: false,
-        message: "Login not implemented yet",
-    });
+    try {
+        const data = await authService.login(req.body);
+
+        return res.status(200).json({
+            success: true,
+            token: data.token,
+            user: data.user,
+        });
+
+    } catch (error) {
+
+        return res.status(401).json({
+            success: false,
+            message: error.message,
+        });
+    }
 };
 
 module.exports = {
