@@ -2,13 +2,8 @@ const authService = require("../services/authService");
 
 const register = async (req, res) => {
     try {
-        console.log("✅ Controller reached");
-        console.log("📩 Request Body:", req.body);
 
         const user = await authService.register(req.body);
-
-        console.log("✅ Service finished");
-        console.log("👤 User:", user);
 
         return res.status(201).json({
             success: true,

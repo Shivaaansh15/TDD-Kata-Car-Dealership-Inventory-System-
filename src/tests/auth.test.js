@@ -53,5 +53,26 @@ describe("POST /api/auth/register", () => {
     expect(savedUser.name).toBe(userData.name);
     expect(savedUser.email).toBe(userData.email);
   });
+  test("should not allow duplicate email registration", async () => {
+
+  const userData = {
+    name: "Narendra Modi",
+    email: "modi@example.com",
+    password: "password123",
+  };
+
+  await request(app)
+    .post("/api/auth/register")
+    .send(userData);
+
+  const response = await request(app)
+    .post("/api/auth/register")
+    .send(userData);
+
+  expect(response.statusCode).toBe(409);
+  expect(response.body.success).toBe(false);
+  expect(response.body.message).toBe("Email already exists");
+
+    });
 
 });
